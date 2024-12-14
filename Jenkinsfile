@@ -3,6 +3,8 @@ pipeline {
     environment {
         DOCKER_REGISTRY = 'docker.io'
         DOCKER_SECRET = 'my-docker-credentials'
+        DOCKER_REPO = 'jorgesm15/nodejs-app' // Ajusta el nombre del repositorio
+        IMAGE_TAG = 'latest' // Ajusta según la etiqueta que quieras usar
         OPENSHIFT_TOKEN = credentials('openshift-token')  // 'openshift-token' es el ID del Secret que creaste
     }
     stages {
