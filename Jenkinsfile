@@ -17,7 +17,7 @@ pipeline {
         }
         stage('Clone repository') {
             steps {
-                git 'https://github.com/jorgesm15/openshift-jenkins.git'
+                git branch: 'main', url: 'https://github.com/jorgesm15/openshift-jenkins.git'
             }
         }
         stage('Build and Push Docker Image') {
