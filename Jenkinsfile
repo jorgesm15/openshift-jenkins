@@ -25,10 +25,12 @@ pipeline {
         stage('Build and Push Docker Image') {
             steps {
                 script {
-                    // Utilizamos Docker para construir y subir la imagen
-                    docker.withRegistry("https://${DOCKER_REGISTRY}") {
-                        docker.image("${DOCKER_REPO}:${IMAGE_TAG}").build()
-                        docker.image("${DOCKER_REPO}:${IMAGE_TAG}").push()
+                    // Usa la configuración de la credencial almacenada en Jenkins
+                    docker.withRegistry('https://index.docker.io/v1/', 'docker-credentials-id') {
+                        // Construir la imagen Docker
+                        def app = docker.build("${DOCKER_REPO}:${IMAGE_TAG}")
+                        // Hacer push a Docker Hub
+                        app.push()
                     }
                 }
             }
